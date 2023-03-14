@@ -63,7 +63,7 @@ def get_user_name() -> str:
     username = (get_credentials_from_env("FIR_API_USERNAME") or
                 get_credentials_from_file(DEFAULT_CONFIG_FILE_PATH)[0])
 
-    if not username:
+    if username is None:
         typer.secho(
             'Username not found. Please, either set it as an environment '
             'variable (["FIR_API_USERNAME"]) or run the "config" CLI command '
@@ -71,6 +71,8 @@ def get_user_name() -> str:
             fg=typer.colors.RED,
         )
         raise typer.Exit(1)
+
+    return username
 
 
 def get_password() -> str:
@@ -80,7 +82,7 @@ def get_password() -> str:
     """
     password = (get_credentials_from_env("FIR_API_PASSWORD") or
                 get_credentials_from_file(DEFAULT_CONFIG_FILE_PATH)[1])
-    if not password:
+    if password is None:
         typer.secho(
             'Password not found. Please, either set it as an environment '
             'variable (["FIR_API_PASSWORD"]) or run the "config" CLI command '
@@ -88,6 +90,8 @@ def get_password() -> str:
             fg=typer.colors.RED,
         )
         raise typer.Exit(1)
+
+    return password
 
 
 def platform_callback(value: str) -> str:
