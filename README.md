@@ -14,7 +14,7 @@ More information at: https://efold.gov.hu/
 ## Installation
 
 ```bash
-pip install fir-cli
+pip install fir-api-cli
 ```
 
 
